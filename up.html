@@ -1,0 +1,83 @@
+<!-- up.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Devika's Clothing Store - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Load cart.js first -->
+  <script src="js/cart.js"></script>
+</head>
+<body class="bg-gray-100">
+
+<!-- Navbar with Cart button -->
+<nav class="flex items-center justify-between px-6 py-4 bg-indigo-600 text-white">
+  <a href="up.html" class="text-xl font-bold">Devika's Clothing</a>
+  <div class="flex space-x-4">
+    <a href="up.html" class="hover:underline">Home</a>
+    <a href="shop1.html" class="hover:underline">Shop</a>
+    <a href="#contact" class="hover:underline">Contact</a>
+    <button onclick="openCartModal()" class="relative">
+      🛒 Cart <span id="cart-count" class="absolute -top-2 -right-4 bg-red-500 text-xs rounded-full px-2">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="text-center bg-indigo-600 text-white py-20">
+  <h1 class="text-5xl font-bold mb-4">Welcome to Devika's Clothing Store!</h1>
+  <p class="text-xl mb-6">Fresh fashion. Great prices. Always in style.</p>
+  <a href="shop1.html" class="inline-block bg-white text-indigo-600 font-semibold px-6 py-3 rounded hover:bg-gray-200">Shop Now</a>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="max-w-xl mx-auto my-10 p-6 bg-white rounded shadow">
+  <h2 class="text-2xl font-bold mb-4 text-center">Contact Us</h2>
+  <form id="contact-form" class="space-y-4">
+    <div>
+      <label for="name" class="block mb-1 font-medium">Your Name:</label>
+      <input type="text" id="name" class="w-full border border-gray-300 rounded px-3 py-2" required>
+    </div>
+    <div>
+      <label for="email" class="block mb-1 font-medium">Your Email:</label>
+      <input type="email" id="email" class="w-full border border-gray-300 rounded px-3 py-2" required>
+    </div>
+    <div>
+      <label for="message" class="block mb-1 font-medium">Your Message:</label>
+      <textarea id="message" rows="5" class="w-full border border-gray-300 rounded px-3 py-2" required></textarea>
+    </div>
+    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Send Message</button>
+  </form>
+</section>
+
+<!-- Cart Modal -->
+<div id="cartModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white rounded shadow p-6 w-full max-w-md">
+    <div class="flex justify-between items-center mb-4">
+      <h5 class="text-xl font-bold">Your Cart</h5>
+      <button onclick="closeCartModal()" class="text-gray-500 hover:text-black">&times;</button>
+    </div>
+    <div id="cart-items"></div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+  function openCartModal() {
+    document.getElementById('cartModal').classList.remove('hidden');
+    displayCartItems('cart-items');
+  }
+  function closeCartModal() {
+    document.getElementById('cartModal').classList.add('hidden');
+  }
+  updateCartCount();
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Thank you for your message! We will get back to you soon.');
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
