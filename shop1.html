@@ -5,118 +5,177 @@
   <meta charset="UTF-8" />
   <title>Devika's Clothing Store - Shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Load cart.js first -->
-  <script src="js/cart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
+<body>
 
-<!-- Navbar with Cart button -->
-<nav class="flex items-center justify-between px-6 py-4 bg-indigo-600 text-white">
-  <a href="up.html" class="text-xl font-bold">Devika's Clothing</a>
-  <div class="flex space-x-4">
-    <a href="up.html" class="hover:underline">Home</a>
-    <a href="shop1.html" class="hover:underline">Shop</a>
-    <button onclick="openCartModal()" class="relative">
-      🛒 Cart <span id="cart-count" class="absolute -top-2 -right-4 bg-red-500 text-xs rounded-full px-2">0</span>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+  <a class="navbar-brand" href="up.html">Devika's Clothing</a>
+  <div class="ms-auto">
+    <a href="up.html" class="btn btn-outline-light me-2">Home</a>
+    <a href="shop1.html" class="btn btn-outline-light me-2">Shop</a>
+    <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#cartModal">
+      🛒 Cart <span id="cart-count" class="badge bg-danger">0</span>
     </button>
   </div>
 </nav>
 
-<!-- Products -->
-<div class="max-w-7xl mx-auto py-10 px-4">
-  <h2 class="text-3xl font-bold mb-6 text-center">Shop All</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Shop -->
+<div class="container my-5">
+  <h2 class="text-center mb-4">Shop All</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
 
-    <!-- Men's Jacket -->
-    <div class="bg-white rounded shadow p-4 text-center">
-      <img src="https://exotix.in/wp-content/uploads/2025/05/3db2b961d0dd93aaf7b580a97f099132-600x600.jpg" alt="Men's Jacket" class="w-full mb-4">
-      <h5 class="text-lg font-semibold mb-2">Men's Jacket</h5>
-      <p class="mb-4">Rs. 2390/-</p>
-      <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
-        onclick="addToCart({ name: 'Men\'s Jacket', price: 2390 })">
-        Add to Cart
-      </button>
+    <!-- Product 1 (existing) -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://exotix.in/wp-content/uploads/2025/05/3db2b961d0dd93aaf7b580a97f099132-600x600.jpg" class="card-img-top" alt="Men's Jacket" style="height:280px;object-fit:cover;">
+        <div class="card-body text-center">
+          <h5 class="card-title">Men's Jacket</h5>
+          <p>Rs. 2,390/-</p>
+          <button class="btn btn-primary" onclick="addToCart({ name: 'Men\'s Jacket', price: 2390 })">Add to Cart</button>
+        </div>
+      </div>
     </div>
 
-    <!-- Women's Dress -->
-    <div class="bg-white rounded shadow p-4 text-center">
-      <img src="https://littleboxindia.com/cdn/shop/files/DR1680_1_1_720x.jpg?v=1745304003" alt="Women's Dress" class="w-full mb-4">
-      <h5 class="text-lg font-semibold mb-2">Women's Floral Dress</h5>
-      <p class="mb-4">Rs. 1890/-</p>
-      <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
-        onclick="addToCart({ name: 'Women\'s Floral Dress', price: 1890 })">
-        Add to Cart
-      </button>
+    <!-- Product 2 (existing) -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://image.hm.com/assets/hm/1e/e7/1ee74c7773666fabfb556078d7fd451caddeb189.jpg?imwidth=1260" class="card-img-top" alt="Women's Dress" style="height:280px;object-fit:cover;">
+        <div class="card-body text-center">
+          <h5 class="card-title">Women's Dress</h5>
+          <p>Rs. 1,290/-</p>
+          <button class="btn btn-primary" onclick="addToCart({ name: 'Women\'s Dress', price: 1290 })">Add to Cart</button>
+        </div>
+      </div>
     </div>
 
-    <!-- Running Shoes -->
-    <div class="bg-white rounded shadow p-4 text-center">
-      <img src="https://m.media-amazon.com/images/I/614aiM56siL._SL1500_.jpg" alt="Running Shoes" class="w-full mb-4">
-      <h5 class="text-lg font-semibold mb-2">Running Shoes</h5>
-      <p class="mb-4">Rs. 2990/-</p>
-      <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
-        onclick="addToCart({ name: 'Running Shoes', price: 2990 })">
-        Add to Cart
-      </button>
+    <!-- Product 3 (existing) -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTTg-JCPu4Fgu1WmO8UupONXWhFhbgN267yw3fECXL7P_wMEBQUuzBCNEAKRu7bCdDTiVwYKNYtV9NIzcAdKBDZrN-7A7zQ9l0wDmU6YF1qr1LCZzqFVVPjGww" class="card-img-top" alt="Stylish Shoes" style="height:280px;object-fit:cover;">
+        <div class="card-body text-center">
+          <h5 class="card-title">Stylish Shoes</h5>
+          <p>Rs. 566/-</p>
+          <button class="btn btn-primary" onclick="addToCart({ name: 'Stylish Shoes', price: 566 })">Add to Cart</button>
+        </div>
+      </div>
     </div>
 
-    <!-- Casual T-Shirt -->
-    <div class="bg-white rounded shadow p-4 text-center">
-      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRW6iyZigrT7HluIPEkOQugT09ap1VXq5PGdCGi1R1HaQBlh6l-npSU5RguIoBrjlJ5WRqrXSpXyEIfaMUFlg3FxmsJ7N-iszNXTbcbtc0Th54RJHlCPjrbvw" alt="Casual T-Shirt" class="w-full mb-4">
-      <h5 class="text-lg font-semibold mb-2">Casual T-Shirt</h5>
-      <p class="mb-4">Rs. 790/-</p>
-      <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
-        onclick="addToCart({ name: 'Casual T-Shirt', price: 790 })">
-        Add to Cart
-      </button>
+    <!-- NEW Product 4: Floral Kurti -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://images.meesho.com/images/products/265506217/prmwk_512.webp" class="card-img-top" alt="Floral Printed Kurti"
+          style="height:280px;object-fit:cover;"
+          onerror="this.src='https://placehold.co/400x280?text=Floral+Kurti'">
+        <div class="card-body text-center">
+          <h5 class="card-title">Floral Printed Kurti</h5>
+          <p class="text-muted small mb-1">Women's Ethnic Wear</p>
+          <p>Rs. 799/-</p>
+          <button class="btn btn-primary" onclick="addToCart({ name: 'Floral Printed Kurti', price: 799 })">Add to Cart</button>
+        </div>
+      </div>
     </div>
 
-    <!-- Formal Shoes -->
-    <div class="bg-white rounded shadow p-4 text-center">
-      <img src="https://cliveshoes.com/cdn/shop/files/M10074307BLK.jpg?v=1746780353" alt="Formal Shoes" class="w-full mb-4">
-      <h5 class="text-lg font-semibold mb-2">Formal Shoes</h5>
-      <p class="mb-4">Rs. 2490/-</p>
-      <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
-        onclick="addToCart({ name: 'Formal Shoes', price: 2490 })">
-        Add to Cart
-      </button>
+    <!-- NEW Product 5: Palazzo Set -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://images.meesho.com/images/products/301801696/og8ot_512.webp" class="card-img-top" alt="Kurta Palazzo Set"
+          style="height:280px;object-fit:cover;"
+          onerror="this.src='https://placehold.co/400x280?text=Kurta+Palazzo'">
+        <div class="card-body text-center">
+          <h5 class="card-title">Kurta Palazzo Set</h5>
+          <p class="text-muted small mb-1">Women's Co-ord Set</p>
+          <p>Rs. 1,199/-</p>
+          <button class="btn btn-primary" onclick="addToCart({ name: 'Kurta Palazzo Set', price: 1199 })">Add to Cart</button>
+        </div>
+      </div>
     </div>
 
-    <!-- Summer Dress -->
-    <div class="bg-white rounded shadow p-4 text-center">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1DjHK5s3YXtrbp00PQBf0znfnjOywJiWrgN53k50XxdMJYxmt8A2N2SF1OBY33nLQ6h0&usqp=CAU" alt="Summer Dress" class="w-full mb-4">
-      <h5 class="text-lg font-semibold mb-2">Summer Dress</h5>
-      <p class="mb-4">Rs. 1590/-</p>
-      <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
-        onclick="addToCart({ name: 'Summer Dress', price: 1590 })">
-        Add to Cart
-      </button>
+    <!-- NEW Product 6: Embroidered Dupatta -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://images.meesho.com/images/products/217261961/qyrfo_512.webp" class="card-img-top" alt="Embroidered Dupatta"
+          style="height:280px;object-fit:cover;"
+          onerror="this.src='https://placehold.co/400x280?text=Embroidered+Dupatta'">
+        <div class="card-body text-center">
+          <h5 class="card-title">Embroidered Dupatta</h5>
+          <p class="text-muted small mb-1">Women's Accessory</p>
+          <p>Rs. 449/-</p>
+          <button class="btn btn-primary" onclick="addToCart({ name: 'Embroidered Dupatta', price: 449 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW Product 7: Tote Bag -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://images.meesho.com/images/products/349924068/xkr9t_512.webp" class="card-img-top" alt="Printed Tote Bag"
+          style="height:280px;object-fit:cover;"
+          onerror="this.src='https://placehold.co/400x280?text=Tote+Bag'">
+        <div class="card-body text-center">
+          <h5 class="card-title">Printed Tote Bag</h5>
+          <p class="text-muted small mb-1">Accessories</p>
+          <p>Rs. 599/-</p>
+          <button class="btn btn-primary" onclick="addToCart({ name: 'Printed Tote Bag', price: 599 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW Product 8: Oxidised Earrings -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://images.meesho.com/images/products/99668251/xaxjv_512.webp" class="card-img-top" alt="Oxidised Earrings"
+          style="height:280px;object-fit:cover;"
+          onerror="this.src='https://placehold.co/400x280?text=Oxidised+Earrings'">
+        <div class="card-body text-center">
+          <h5 class="card-title">Oxidised Earrings</h5>
+          <p class="text-muted small mb-1">Jewellery & Accessories</p>
+          <p>Rs. 249/-</p>
+          <button class="btn btn-primary" onclick="addToCart({ name: 'Oxidised Earrings', price: 249 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW Product 9: Embroidered Belt -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://images.meesho.com/images/products/234063544/zivya_512.webp" class="card-img-top" alt="Embroidered Potli Bag"
+          style="height:280px;object-fit:cover;"
+          onerror="this.src='https://placehold.co/400x280?text=Potli+Bag'">
+        <div class="card-body text-center">
+          <h5 class="card-title">Embroidered Potli Bag</h5>
+          <p class="text-muted small mb-1">Accessories</p>
+          <p>Rs. 699/-</p>
+          <button class="btn btn-primary" onclick="addToCart({ name: 'Embroidered Potli Bag', price: 699 })">Add to Cart</button>
+        </div>
+      </div>
     </div>
 
   </div>
 </div>
 
 <!-- Cart Modal -->
-<div id="cartModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-  <div class="bg-white rounded shadow p-6 w-full max-w-md">
-    <div class="flex justify-between items-center mb-4">
-      <h5 class="text-xl font-bold">Your Cart</h5>
-      <button onclick="closeCartModal()" class="text-gray-500 hover:text-black">&times;</button>
+<div class="modal fade" id="cartModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Your Cart</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="cart-items"></div>
     </div>
-    <div id="cart-items"></div>
   </div>
 </div>
 
 <!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/cart.js"></script>
 <script>
-  function openCartModal() {
-    document.getElementById('cartModal').classList.remove('hidden');
+  const cartModal = document.getElementById('cartModal');
+  cartModal.addEventListener('shown.bs.modal', () => {
     displayCartItems('cart-items');
-  }
-  function closeCartModal() {
-    document.getElementById('cartModal').classList.add('hidden');
-  }
+  });
   updateCartCount();
 </script>
 
