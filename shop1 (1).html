@@ -1,0 +1,247 @@
+<!-- shop1.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Devika's Clothing Store - Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rose: #c8536a;
+      --rose-light: #f5e6ea;
+      --dark: #1a1219;
+      --muted: #7a6b72;
+      --card-radius: 14px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: #fdf7f8; color: var(--dark); }
+    .navbar { background: var(--dark) !important; padding: 1rem 2rem; }
+    .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff !important; letter-spacing: 0.03em; }
+    .btn-outline-light { border-radius: 30px; font-size: 0.85rem; padding: 0.35rem 1rem; transition: background 0.2s, color 0.2s; }
+    .shop-header { text-align: center; padding: 3.5rem 1rem 2rem; }
+    .shop-header h2 { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; color: var(--dark); }
+    .shop-header p { color: var(--muted); font-size: 1rem; margin-top: 0.4rem; }
+    .divider-line { width: 50px; height: 3px; background: var(--rose); margin: 1rem auto 0; border-radius: 2px; }
+    .card { border: none; border-radius: var(--card-radius); overflow: hidden; box-shadow: 0 2px 14px rgba(0,0,0,0.07); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(200,83,106,0.18); }
+    .card-img-top { height: 280px; object-fit: cover; transition: transform 0.4s ease; }
+    .card:hover .card-img-top { transform: scale(1.04); }
+    .img-wrap { overflow: hidden; }
+    .card-body { padding: 1.2rem; text-align: center; background: #fff; }
+    .card-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.2rem; color: var(--dark); }
+    .product-category { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .product-price { font-size: 1rem; font-weight: 600; color: var(--rose); margin-bottom: 0.8rem; }
+    .btn-add { background: var(--rose); color: #fff; border: none; border-radius: 30px; padding: 0.45rem 1.4rem; font-size: 0.85rem; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+    .btn-add:hover { background: #a83d55; transform: scale(1.04); color: #fff; }
+    .btn-add:active { transform: scale(0.98); }
+    .modal-header { background: var(--dark); color: #fff; border-bottom: none; }
+    .modal-header .btn-close { filter: invert(1); }
+    .modal-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+    .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid #f0e8ea; font-size: 0.9rem; }
+    .cart-total { margin-top: 1rem; font-weight: 700; font-size: 1rem; text-align: right; color: var(--rose); }
+    .cart-empty { text-align: center; color: var(--muted); padding: 1.5rem 0; }
+    @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.35); } 100% { transform: scale(1); } }
+    .pop { animation: pop 0.3s ease; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark px-4">
+  <a class="navbar-brand" href="up.html">Devika's Clothing</a>
+  <div class="ms-auto d-flex align-items-center gap-2">
+    <a href="up.html" class="btn btn-outline-light me-1">Home</a>
+    <a href="shop1.html" class="btn btn-outline-light me-1">Shop</a>
+    <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#cartModal">
+      🛒 Cart <span id="cart-count" class="badge bg-danger ms-1">0</span>
+    </button>
+  </div>
+</nav>
+
+<div class="shop-header">
+  <h2>Shop All</h2>
+  <p>Curated picks for every occasion</p>
+  <div class="divider-line"></div>
+</div>
+
+<div class="container pb-5">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=560&fit=crop" class="card-img-top" alt="Men's Jacket">
+        </div>
+        <div class="card-body">
+          <p class="product-category">Men's Outerwear</p>
+          <h5 class="card-title">Men's Jacket</h5>
+          <p class="product-price">Rs. 2,390</p>
+          <button class="btn btn-add" onclick="addToCart({ name: 'Men\'s Jacket', price: 2390 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&h=560&fit=crop" class="card-img-top" alt="Women's Dress">
+        </div>
+        <div class="card-body">
+          <p class="product-category">Women's Western</p>
+          <h5 class="card-title">Women's Dress</h5>
+          <p class="product-price">Rs. 1,290</p>
+          <button class="btn btn-add" onclick="addToCart({ name: 'Women\'s Dress', price: 1290 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=560&fit=crop" class="card-img-top" alt="Stylish Shoes">
+        </div>
+        <div class="card-body">
+          <p class="product-category">Footwear</p>
+          <h5 class="card-title">Stylish Shoes</h5>
+          <p class="product-price">Rs. 566</p>
+          <button class="btn btn-add" onclick="addToCart({ name: 'Stylish Shoes', price: 566 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=600&h=560&fit=crop" class="card-img-top" alt="Floral Printed Kurti">
+        </div>
+        <div class="card-body">
+          <p class="product-category">Women's Ethnic Wear</p>
+          <h5 class="card-title">Floral Printed Kurti</h5>
+          <p class="product-price">Rs. 799</p>
+          <button class="btn btn-add" onclick="addToCart({ name: 'Floral Printed Kurti', price: 799 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=560&fit=crop" class="card-img-top" alt="Kurta Palazzo Set">
+        </div>
+        <div class="card-body">
+          <p class="product-category">Women's Co-ord Set</p>
+          <h5 class="card-title">Kurta Palazzo Set</h5>
+          <p class="product-price">Rs. 1,199</p>
+          <button class="btn btn-add" onclick="addToCart({ name: 'Kurta Palazzo Set', price: 1199 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&h=560&fit=crop" class="card-img-top" alt="Embroidered Dupatta">
+        </div>
+        <div class="card-body">
+          <p class="product-category">Women's Accessory</p>
+          <h5 class="card-title">Embroidered Dupatta</h5>
+          <p class="product-price">Rs. 449</p>
+          <button class="btn btn-add" onclick="addToCart({ name: 'Embroidered Dupatta', price: 449 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&h=560&fit=crop" class="card-img-top" alt="Printed Tote Bag">
+        </div>
+        <div class="card-body">
+          <p class="product-category">Accessories</p>
+          <h5 class="card-title">Printed Tote Bag</h5>
+          <p class="product-price">Rs. 599</p>
+          <button class="btn btn-add" onclick="addToCart({ name: 'Printed Tote Bag', price: 599 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&h=560&fit=crop" class="card-img-top" alt="Oxidised Earrings">
+        </div>
+        <div class="card-body">
+          <p class="product-category">Jewellery & Accessories</p>
+          <h5 class="card-title">Oxidised Earrings</h5>
+          <p class="product-price">Rs. 249</p>
+          <button class="btn btn-add" onclick="addToCart({ name: 'Oxidised Earrings', price: 249 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&h=560&fit=crop" class="card-img-top" alt="Embroidered Potli Bag">
+        </div>
+        <div class="card-body">
+          <p class="product-category">Accessories</p>
+          <h5 class="card-title">Embroidered Potli Bag</h5>
+          <p class="product-price">Rs. 699</p>
+          <button class="btn btn-add" onclick="addToCart({ name: 'Embroidered Potli Bag', price: 699 })">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Cart Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">🛒 Your Cart</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="cart-items"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let cart = JSON.parse(localStorage.getItem('devikaCart') || '[]');
+  function saveCart() { localStorage.setItem('devikaCart', JSON.stringify(cart)); }
+  function updateCartCount() {
+    const total = cart.reduce((sum, i) => sum + i.qty, 0);
+    const badge = document.getElementById('cart-count');
+    badge.textContent = total;
+    badge.classList.remove('pop');
+    void badge.offsetWidth;
+    badge.classList.add('pop');
+  }
+  function addToCart(item) {
+    const existing = cart.find(i => i.name === item.name);
+    if (existing) { existing.qty++; } else { cart.push({ ...item, qty: 1 }); }
+    saveCart();
+    updateCartCount();
+  }
+  function displayCartItems(containerId) {
+    const el = document.getElementById(containerId);
+    if (!cart.length) { el.innerHTML = '<p class="cart-empty">Your cart is empty 🛍️</p>'; return; }
+    let total = 0, html = '';
+    cart.forEach((item, idx) => {
+      const sub = item.price * item.qty;
+      total += sub;
+      html += `<div class="cart-item-row"><span>${item.name} × ${item.qty}</span><span>Rs. ${sub.toLocaleString('en-IN')}<button class="btn btn-sm btn-link text-danger ms-2 p-0" onclick="removeFromCart(${idx})">✕</button></span></div>`;
+    });
+    html += `<div class="cart-total">Total: Rs. ${total.toLocaleString('en-IN')}</div>`;
+    el.innerHTML = html;
+  }
+  function removeFromCart(idx) { cart.splice(idx, 1); saveCart(); updateCartCount(); displayCartItems('cart-items'); }
+  updateCartCount();
+  document.getElementById('cartModal').addEventListener('shown.bs.modal', () => displayCartItems('cart-items'));
+</script>
+</body>
+</html>
